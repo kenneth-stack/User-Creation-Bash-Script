@@ -12,9 +12,9 @@
     <ul>
         <li><strong>Input File Processing:</strong> The script takes a text file where each line contains a username and a list of groups, separated by a semicolon (<code>;</code>). Example:
             <pre>
-light;sudo,dev,www-data
-idimma;sudo
-mayowa;dev,www-data
+             light;sudo,dev,www-data
+             idimma;sudo
+             mayowa;dev,www-data
             </pre>
         </li>
         <li><strong>User and Group Creation:</strong> For each user, the script creates a personal group with the same name as the username and adds the user to the specified groups.</li>
@@ -27,37 +27,38 @@ mayowa;dev,www-data
     <h3>Script Breakdown:</h3>
 
     <h4>File Paths and Secure Directory Setup:</h4>
-    <pre><code class="language-bash">
-LOG_FILE="/var/log/user_management.log"
-PASSWORD_FILE="/var/secure/user_passwords.txt"
-INPUT_FILE=$1
-mkdir -p /var/secure
-chmod 700 /var/secure
-    </code></pre>
+        <pre><code class="language-bash">
+         LOG_FILE="/var/log/user_management.log"
+         PASSWORD_FILE="/var/secure/user_passwords.txt"
+         INPUT_FILE=$1
+         mkdir -p /var/secure
+         chmod 700 /var/secure
+        </code></pre>
 
     <h4>Random Password Generation Function:</h4>
-    <pre><code class="language-bash">
-generate_password() {
-    tr -dc A-Za-z0-9 &lt;/dev/urandom | head -c 12
-}
-    </code></pre>
+        <pre><code class="language-bash">
+         generate_password() {
+         tr -dc A-Za-z0-9 &lt;/dev/urandom | head -c 12
+        }
+        </code></pre>
 
     <h4>Log and Password File Initialization:</h4>
-    <pre><code class="language-bash">
-touch $LOG_FILE
-chmod 644 $LOG_FILE
-touch $PASSWORD_FILE
-chmod 600 $PASSWORD_FILE
-    </code></pre>
+        <pre><code class="language-bash">
+         touch $LOG_FILE
+         chmod 644 $LOG_FILE
+         touch $PASSWORD_FILE
+         chmod 600 $PASSWORD_FILE
+        </code></pre>
 
     <h4>Processing the Input File:</h4>
-    <pre><code class="language-bash">
-if [[ ! -f "$INPUT_FILE" ]]; then
-    echo "Input file not found!" | tee -a $LOG_FILE
-    exit 1
-fi
+    
+        <pre><code class="language-bash">
+         if [[ ! -f "$INPUT_FILE" ]]; then
+         echo "Input file not found!" | tee -a $LOG_FILE
+         exit 1
+        fi
 
-while IFS=";" read -r username groups; do
+    while IFS=";" read -r username groups; do
     username=$(echo $username | xargs)
     groups=$(echo $groups | xargs)
 
