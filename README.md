@@ -4,7 +4,7 @@
 </head>
 <body>
     <h1>Automating User Creation and Management with a Bash Script</h1>
-    <p>As a SysOps engineer, managing user accounts and groups is a routine but crucial task. Automating this process not only saves time but also reduces the potential for errors. In this article, we'll walk through a bash script that reads user information from a text file, creates users and their groups, sets up home directories, generates random passwords, logs actions, and stores passwords securely.</p>
+    <p>When working as a SysOps engineer, managing user accounts and groups is a routine but crucial task. Automating this process not only saves time but also reduces the potential for errors. In this article, we'll walk through a bash script that reads user information from a text file, creates users and their groups, sets up home directories, generates random passwords, logs actions, and stores passwords securely.</p>
 
 <h2>The Script: <code>create_users.sh</code></h2>
 
